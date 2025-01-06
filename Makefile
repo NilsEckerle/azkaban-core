@@ -5,7 +5,7 @@ CFLAGS = -Iinclude -Ithird/sqlcipher/include -fPIC
 LDFLAGS = -lsqlcipher
 
 final: setup $(OBJECTS)
-	gcc $(OBJECTS) $(LDFLAGS) -shared -o lib/libazkaban-core.so.0.1
+	gcc $(OBJECTS) $(LDFLAGS) -shared -o lib/libazkaban-core.so
 
 clean:
 	@if [ -d build ]; then \
