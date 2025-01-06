@@ -11,15 +11,13 @@ clean:
 	@if [ -d build ]; then \
 		rm -r build;\
 	fi
-	@if [ -d azkaban-core ]; then \
-		rm -r azkaban-core;\
+	@if [ -d lib ]; then \
+		rm -r lib;\
 	fi
 
 setup: clean
 	@mkdir build
-	@mkdir azkaban-core
-	@mkdir azkaban-core/lib
-	@mkdir azkaban-core/includes
+	@mkdir lib
 
 build/db_manager.o: src/db_manager.c
 	gcc $(CFLAGS) -c src/db_manager.c -o build/db_manager.o
