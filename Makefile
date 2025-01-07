@@ -6,6 +6,7 @@ LDFLAGS = -lsqlcipher
 
 final: setup $(OBJECTS)
 	gcc $(OBJECTS) $(LDFLAGS) -shared -o lib/libazkaban-core.so
+	gcc $(OBJECTS) $(LDFLAGS) -shared -o lib/libazkaban-core.dylib -install_name @rpath/libazkaban-core.dylib
 
 clean:
 	@if [ -d build ]; then \
