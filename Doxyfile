@@ -1,0 +1,60 @@
+# Doxyfile configuration for generating documentation in ./documentation/doc
+
+# Project related settings
+PROJECT_NAME           = "Azkaban Core"
+PROJECT_NUMBER         = "1.0"
+OUTPUT_DIRECTORY       = ./documentation
+CREATE_SUBDIRS         = NO
+
+# Source code locations
+INPUT                  = ./include ./src
+FILE_PATTERNS          = *.h *.c
+RECURSIVE             = YES
+
+# Documentation output format
+GENERATE_HTML          = YES
+HTML_OUTPUT            = doc
+GENERATE_LATEX         = NO
+
+# Extract documentation from comments
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = NO
+EXTRACT_STATIC         = YES
+
+# Source code browsing
+SOURCE_BROWSER         = YES
+INLINE_SOURCES         = YES
+
+# Build options
+QUIET                 = NO
+WARNINGS              = YES
+WARN_IF_UNDOCUMENTED  = YES
+WARN_IF_DOC_ERROR     = YES
+WARN_NO_PARAMDOC      = NO
+
+# Optimize for large projects
+SHOW_INCLUDE_FILES     = YES
+SHOW_USED_FILES        = YES
+
+# Indexing
+GENERATE_TREEVIEW      = YES
+
+# Miscellaneous
+CASE_SENSE_NAMES       = YES
+MACRO_EXPANSION        = YES
+EXPAND_ONLY_PREDEF     = NO
+ENABLE_PREPROCESSING   = YES
+
+# External tools
+DOT_FOUND             = YES
+HAVE_DOT              = YES
+CALL_GRAPH            = YES
+CALLER_GRAPH          = YES
+DOT_NUM_THREADS       = 2
+
+# Footer & Header
+GENERATE_HTMLHELP     = NO
+GENERATE_TREEVIEW     = YES
+GENERATE_BUGLIST      = YES
+GENERATE_DEPRECATEDLIST = YES
+

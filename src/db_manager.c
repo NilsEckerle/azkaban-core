@@ -40,7 +40,7 @@ int db_add_to_folder(sqlite3 *db, int entry_id, char *folder_name) {
   rc = sqlite3_prepare_v2(db, sql, -1, &stmt, 0);
   if (rc != SQLITE_OK) {
     fprintf(stderr, "Failed to prepare statement: %s\n", sqlite3_errmsg(db));
-    return 1;
+    return -1;
   }
 
   sqlite3_bind_int(stmt, 1, entry_id);
@@ -49,7 +49,7 @@ int db_add_to_folder(sqlite3 *db, int entry_id, char *folder_name) {
   rc = sqlite3_step(stmt);
   if (rc != SQLITE_DONE) {
     fprintf(stderr, "Failed to execute statment: %s\n", sqlite3_errmsg(db));
-    return 1;
+    return -1;
   }
   return 0;
 }
@@ -61,7 +61,7 @@ int db_delete_entryDetail(sqlite3 *db, int entry_detail_id) {
 
   if (sqlite3_prepare_v2(db, sql, -1, &stmt, 0) != SQLITE_OK) {
     fprintf(stderr, "Failed to prepare statement\n");
-    return 1;
+    return -1;
   }
 
   sqlite3_bind_int(stmt, 1, entry_detail_id);
@@ -69,7 +69,7 @@ int db_delete_entryDetail(sqlite3 *db, int entry_detail_id) {
   if (sqlite3_step(stmt) != SQLITE_DONE) {
     fprintf(stderr, "Execution failed: %s\n", sqlite3_errmsg(db));
     sqlite3_finalize(stmt);
-    return 1;
+    return -1;
   }
 
   sqlite3_finalize(stmt);
@@ -93,7 +93,7 @@ int db_delete_entry(sqlite3 *db, int entry_id) {
 
   if (sqlite3_prepare_v2(db, sql, -1, &stmt, 0) != SQLITE_OK) {
     fprintf(stderr, "Failed to prepare statement\n");
-    return 1;
+    return -1;
   }
 
   sqlite3_bind_int(stmt, 1, entry_id);
@@ -101,7 +101,7 @@ int db_delete_entry(sqlite3 *db, int entry_id) {
   if (sqlite3_step(stmt) != SQLITE_DONE) {
     fprintf(stderr, "Execution failed: %s\n", sqlite3_errmsg(db));
     sqlite3_finalize(stmt);
-    return 1;
+    return 1-;
   }
 
   sqlite3_finalize(stmt);
@@ -125,7 +125,7 @@ int db_write_entryDetail(sqlite3 *db, EntryDetail entry_detail) {
   rc = sqlite3_prepare_v2(db, sql, -1, &stmt, 0);
   if (rc != SQLITE_OK) {
     fprintf(stderr, "Failed to prepare statement: %s\n", sqlite3_errmsg(db));
-    return 1;
+    return -1;
   }
 
   sqlite3_bind_int(stmt, 1, entry_detail.f_entry_id);
@@ -142,7 +142,7 @@ int db_write_entryDetail(sqlite3 *db, EntryDetail entry_detail) {
   rc = sqlite3_step(stmt);
   if (rc != SQLITE_DONE) {
     fprintf(stderr, "Failed to execute statment: %s\n", sqlite3_errmsg(db));
-    return 1;
+    return -1;
   }
   return 0;
 }
@@ -233,6 +233,7 @@ int db_change_entry(sqlite3 *db, int entry_id, Entry new_entry) {
   // succsessful written, now delete
   if (db_delete_entry(db, entry_id) == 1) {
     fprintf(stderr, "Failed to delete");
+	return 1;
   }
   current = entry_detail_list;
   while (current != NULL) {

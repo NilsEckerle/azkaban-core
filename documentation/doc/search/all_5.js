@@ -1,0 +1,10 @@
+var searchData=
+[
+  ['f_5fentry_5fid_0',['f_entry_id',['../structEntryDetail.html#a849f762b05ab750c52d3ab44a9ad9388',1,'EntryDetail']]],
+  ['folder_5flist_5fget_5flength_1',['folder_list_get_length',['../entry_8h.html#a2a3107c785781a02bad21f45e69227ad',1,'folder_list_get_length(FolderNode *head):&#160;entry.c'],['../entry_8c.html#a2a3107c785781a02bad21f45e69227ad',1,'folder_list_get_length(FolderNode *head):&#160;entry.c']]],
+  ['folder_5flist_5finit_2',['folder_list_init',['../entry_8h.html#acd86166889d12c0d0d409ca2a1a9274b',1,'folder_list_init(void):&#160;entry.c'],['../entry_8c.html#acd86166889d12c0d0d409ca2a1a9274b',1,'folder_list_init(void):&#160;entry.c']]],
+  ['folder_5flist_5fitterate_5ffunction_3',['folder_list_itterate_function',['../entry_8h.html#aa8c0dfaaa74aa8e50adfba9ceac70d78',1,'folder_list_itterate_function(FolderNode *head, void *callback(void *parameter, char *folder_name), void *parameter_first_given_to_callback):&#160;entry.c'],['../entry_8c.html#aa8c0dfaaa74aa8e50adfba9ceac70d78',1,'folder_list_itterate_function(FolderNode *head, void *callback(void *parameter, char *folder_name), void *parameter_first_given_to_callback):&#160;entry.c']]],
+  ['folder_5flist_5fprepent_4',['folder_list_prepent',['../entry_8h.html#aee652344315fc0fc4d58de84eac82480',1,'folder_list_prepent(FolderNode **head, char *folder_name):&#160;entry.c'],['../entry_8c.html#aee652344315fc0fc4d58de84eac82480',1,'folder_list_prepent(FolderNode **head, char *folder_name):&#160;entry.c']]],
+  ['folder_5fname_5',['folder_name',['../structFolderNode.html#a8c83ec788af7c85b072f65a80a3fd18e',1,'FolderNode']]],
+  ['foldernode_6',['FolderNode',['../structFolderNode.html',1,'FolderNode'],['../entry_8h.html#a731654f66b39119fce31d7b920f85ee8',1,'FolderNode:&#160;entry.h']]]
+];
