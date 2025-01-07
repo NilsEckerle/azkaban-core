@@ -33,7 +33,7 @@ Execute `make` and pray.
 
 when errors appear fix them and repeat.
 
-Make sure to pray every reqursion.
+Make sure to pray every recursion.
 
 ## nvim LSP support.
 

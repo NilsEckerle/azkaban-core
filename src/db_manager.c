@@ -101,7 +101,7 @@ int db_delete_entry(sqlite3 *db, int entry_id) {
   if (sqlite3_step(stmt) != SQLITE_DONE) {
     fprintf(stderr, "Execution failed: %s\n", sqlite3_errmsg(db));
     sqlite3_finalize(stmt);
-    return 1-;
+    return -1;
   }
 
   sqlite3_finalize(stmt);
