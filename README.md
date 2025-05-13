@@ -6,7 +6,7 @@ Lerning for next time:
 - add third party library into repositorry, not symlinked
 - dont use git submodules. project is to small for it to be worth.
 
-azkaban man project gets discontinued too.
+azkaban main project gets discontinued too.
 
 
 This is the core module of my passwordmanager. Pleas look at [azkaban](https://github.com/N1lsE/azkaban)
