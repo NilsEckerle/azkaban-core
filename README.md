@@ -1,3 +1,14 @@
+Discontinued!!!
+
+Lerning for next time:
+
+- use CMake or premake
+- add third party library into repositorry, not symlinked
+- dont use git submodules. project is to small for it to be worth.
+
+azkaban man project gets discontinued too.
+
+
 This is the core module of my passwordmanager. Pleas look at [azkaban](https://github.com/N1lsE/azkaban)
 
 # How to build
