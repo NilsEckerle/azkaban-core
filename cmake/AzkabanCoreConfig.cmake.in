@@ -1,0 +1,19 @@
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+
+# Find SQLCipher dependency
+if(@USE_SYSTEM_SQLCIPHER@)
+    find_library(SQLCIPHER_LIB sqlcipher REQUIRED)
+else()
+    # Add SQLCipher as imported target if not using system version
+    if(NOT TARGET sqlcipher)
+        add_library(sqlcipher STATIC IMPORTED)
+        # You might need to adjust paths here based on installation layout
+    endif()
+endif()
+
+# Include the targets file
+include("${CMAKE_CURRENT_LIST_DIR}/AzkabanCoreTargets.cmake")
+
+check_required_components(AzkabanCore)
