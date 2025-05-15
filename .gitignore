@@ -1,6 +1,5 @@
 build/
 lib/
-third/
 .env/
 .cache/
 compile_commands.json
