@@ -15,12 +15,12 @@ cmake ..
 ```
 
 Build
-```
+```sh
 make # or make VERBOSE=1
 ```
 
 Rund tests
-```
+```sh
 make test
 # or
 ctest --verbose
@@ -30,15 +30,14 @@ ctest --verbose
 
 ## nvim LSP support.
 
-I had to search so i tell you how.
-
-0. have clangd installed
-0. install *bear*
-0. run `bear -- make`
-
-Bear - is a tool to generate compilation database for Clang tooling.\
-check `man bear` to see more
+after building there should be a file `compile_commands.json` in the build directory.
+Just copy it to the main directory or do a symlik.
 
 
-
+```sh
+cd ~/Documents/azkaban-core
+cp build/compile_commands.json .
+# or
+ln -sf build/compile_commands.json .
+```
 
