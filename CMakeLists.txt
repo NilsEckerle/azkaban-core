@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 3.14)
 # Project name and version
 project(azkaban-core VERSION 1.0.0 LANGUAGES C)
 
+# Export compile commands for LSP
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 # Set C standard
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
