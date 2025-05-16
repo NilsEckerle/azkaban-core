@@ -1,106 +1,106 @@
 #include "linked_list.h"
 #include <stdlib.h>
 
-Node *ll_init_node(void *data) {
-  Node *node = malloc(sizeof(Node));
-  if (node == NULL) {
+stLinkedListNode *fnLinkedListInit(void *pData) {
+  stLinkedListNode *pstNode = malloc(sizeof(stLinkedListNode));
+  if (pstNode == NULL) {
     return NULL;
   }
 
-  node->data = data;
-  node->next = NULL;
+  pstNode->pData = pData;
+  pstNode->pNext = NULL;
 
-  return node;
+  return pstNode;
 }
 
-int ll_prepend_node(Node **head, void *data) {
-  if (head == NULL) { return 1; }
-  if (*head == NULL) { return 1; }
-  if (data == NULL) { return 1; }
+int fnLinkedListPrependNode(stLinkedListNode **pstHead, void *pData) {
+  if (pstHead == NULL) { return 1; }
+  if (*pstHead == NULL) { return 1; }
+  if (pData == NULL) { return 1; }
 
-  Node *new_node = ll_init_node(data);
-  if (new_node == NULL) { return 1; }
+  stLinkedListNode *pstNewNode = fnLinkedListInit(pData);
+  if (pstNewNode == NULL) { return 1; }
 
   // prepend node
-  new_node->next = *head;
-  *head = new_node;
+  pstNewNode->pNext = *pstHead;
+  *pstHead = pstNewNode;
 
   return 0;
 }
 
-int ll_append_node(Node **head, void *data) {
-  if (head == NULL) { return 1; }
-  if (*head == NULL) { return 1; }
-  if (data == NULL) { return 1; }
+int fnLinkedListAppendNode(stLinkedListNode **pstHead, void *pData) {
+  if (pstHead == NULL) { return 1; }
+  if (*pstHead == NULL) { return 1; }
+  if (pData == NULL) { return 1; }
 
-  Node *new_node = ll_init_node(data);
-  if (new_node == NULL) { return 1; }
+  stLinkedListNode *pstNewNode = fnLinkedListInit(pData);
+  if (pstNewNode == NULL) { return 1; }
 
   // traverse til end of list
-  Node *current = *head;
-  while (current->next != NULL) {
-    current = current->next;
+  stLinkedListNode *pstCurrent = *pstHead;
+  while (pstCurrent->pNext != NULL) {
+    pstCurrent = pstCurrent->pNext;
   }
 
   // append node
-  current->next = new_node;
+  pstCurrent->pNext = pstNewNode;
 
   return 0;
 }
 
-int ll_get_length(Node *head) {
-  if (head == NULL) { return 0; }
+int fnLinkedListGetLength(stLinkedListNode *pstHead) {
+  if (pstHead == NULL) { return 0; }
 
-  int len = 1;
-  Node *current = head;
+  int iLength = 1;
+  stLinkedListNode *pstCurrent = pstHead;
 
   // traverse list til end
-  while (current->next != NULL) {
-    len++;
-    current = current->next;
+  while (pstCurrent->pNext != NULL) {
+    iLength++;
+    pstCurrent = pstCurrent->pNext;
   }
 
-  return len;
+  return iLength;
 }
 
-int ll_remove_node(Node **head, unsigned int index) {
-	if (*head == NULL) { return 0; }
+int fnLinkedListRemoveNode(stLinkedListNode **pstHead, unsigned int uiIndex) {
+  if (*pstHead == NULL) { return 1; }
 
-  if (index == 0) {
-    Node *temp = *head;
-    *head = (*head)->next;
+  if (uiIndex == 0) {
+    stLinkedListNode *pstTemp = *pstHead;
+    *pstHead = (*pstHead)->pNext;
 
-    free(temp);
+    free(pstTemp);
 
     return 0;
   }
 
-  Node *current = *head;
+  stLinkedListNode *pstCurrent = *pstHead;
 
-	// Traverse to find the node just before the one to remove
-  for (unsigned int i = 0; i < index - 1; i++) {
-    if (current->next == NULL) { return 1; } // Index out of bounds
-    current = current->next;
+  // Traverse to find the node just before the one to remove
+  for (unsigned int i = 0; i < uiIndex - 1; i++) {
+    if (pstCurrent->pNext == NULL) { return 1; } // Index out of bounds
+    pstCurrent = pstCurrent->pNext;
   }
   
   // Check if we're trying to remove a node past the end
-  if (current->next == NULL) return 1;
+  if (pstCurrent->pNext == NULL) return 1;
   
-  // Remove the next node (which is at position 'index')
-  Node *temp = current->next;
-  current->next = temp->next;
+  // Remove the pNext node (which is at position 'index')
+  stLinkedListNode *pstTemp = pstCurrent->pNext;
+  pstCurrent->pNext = pstTemp->pNext;
 
-  free(temp);
+  free(pstTemp);
 
   return 0;
 }
 
-void ll_itterate_function(Node *head,
-                          void *callback(void *parameter, void *data),
-                          void *parameter_given_to_callback) {
-	Node *current = head;
-	while (current != NULL) {
-		callback(parameter_given_to_callback, current->data);
-		current = current->next;
-	}
+void fnLinkedListItterateFunction(stLinkedListNode *pstHead,
+                      void *fnpCallback(void *pParameter, void* pData),
+                      void *pParameterGivenToCallback) {
+  stLinkedListNode *pstCurrent = pstHead;
+  while (pstCurrent != NULL) {
+    fnpCallback(pParameterGivenToCallback, pstCurrent->pData);
+    pstCurrent = pstCurrent->pNext;
+  }
 }
