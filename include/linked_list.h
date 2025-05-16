@@ -15,15 +15,16 @@ typedef struct Node {
 
 /**
  * @brief Initializes an list.
- * @return Pointer to the head of the list.
+ * @param data - pointer to data
+ * @return - Pointer to the head of the list if successful - NULL otherwise
  */
-Node *ll_init_node(void);
+Node *ll_init_node(void *data);
 
 /**
  * @brief Prepends an item to the list.
  * @param head - Pointer to the head of the list.
  * @param data - pointer to data
- * return - 0 if successful - otherwise 1
+ * @return - 0 if successful - otherwise 1
  */
 int ll_prepend_node(Node **head, void* data);
 
@@ -31,17 +32,25 @@ int ll_prepend_node(Node **head, void* data);
  * @brief append an item to the list.
  * @param head - Pointer to the head of the list.
  * @param data - pointer to data
- * return - 0 if successful - otherwise 1
+ * @return - 0 if successful - otherwise 1
  */
 int ll_append_node(Node **head, void* data);
 
 /**
+ * @brief Gets the length of the list.
+ * @param head - Pointer to the head of the list.
+ * @return - Length of the list.
+ */
+int ll_get_length(Node *head);
+
+/**
  * @brief remove a the i-th element in the list while preserving linked list conectivity, counting starts at 0.
+ * this doesnt free the data.
  * @param head - Pointer to the head of the list.
  * @param index - the element at this location is deleted
- * return - 0 if successful - 1 if index is out of range- otherwise 2
+ * @return - 0 if successful - 1 if index is out of range- otherwise 2
  */
-int ll_remove_node(Node **head, int index);
+int ll_remove_node(Node **head, unsigned int index);
 
 /**
  * @brief Iterates over the list and applies a callback function to each entry.
@@ -52,12 +61,5 @@ int ll_remove_node(Node **head, int index);
 void ll_itterate_function(Node *head,
 											 void *callback(void *parameter, void* data),
 											 void *parameter_given_to_callback);
-
-/**
- * @brief Gets the length of the list.
- * @param head - Pointer to the head of the list.
- * @return - Length of the list.
- */
-int ll_get_length(Node *head);
 
 #endif
