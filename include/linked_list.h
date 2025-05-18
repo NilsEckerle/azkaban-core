@@ -50,7 +50,7 @@ int fnLinkedListGetLength(stLinkedListNode *pHead);
  * @param index - the element at this location is deleted
  * @return - 0 if successful - 1 if index is out of range- otherwise 2
  */
-int fnLinkedListRemoveNode(stLinkedListNode **pHead, unsigned int index);
+int fnLinkedListRemoveNode(stLinkedListNode **pHead, int index);
 
 /**
  * @brief Iterates over the list and applies a callback function to each entry.
@@ -61,5 +61,49 @@ int fnLinkedListRemoveNode(stLinkedListNode **pHead, unsigned int index);
 void fnLinkedListItterateFunction(stLinkedListNode *pHead,
 											 void *fnpCallback(void *pParameter, void* pData),
 											 void *pParameterGivenToCallback);
+
+/**
+ * @brief Get node at position index (starting at 0)
+ * @param pHead - Pointer to the head of the list.
+ * @param iIndex - Index of the node to retrieve.
+ * @return - Pointer to the node at the specified index, NULL if index is out of range.
+ */
+stLinkedListNode *fnLinkedListGet(stLinkedListNode **pHead, int iIndex);
+
+/**
+ * @brief Get first node in the list
+ * @param pHead - Pointer to the head of the list.
+ * @return - Pointer to the first node, NULL if list is empty.
+ */
+stLinkedListNode *fnLinkedListGetFirst(stLinkedListNode **pHead);
+
+/**
+ * @brief Get last node in the list
+ * @param pHead - Pointer to the head of the list.
+ * @return - Pointer to the last node, NULL if list is empty.
+ */
+stLinkedListNode *fnLinkedListGetLast(stLinkedListNode **pHead);
+
+/**
+ * @brief Remove and return the node at the specified index from the list (starting at 0)
+ * @param pHead - Pointer to the head of the list.
+ * @param iIndex - Index of the node to pop.
+ * @return - Pointer to the removed node, NULL if index is out of range.
+ */
+stLinkedListNode *fnLinkedListPop(stLinkedListNode **pHead, int iIndex);
+
+/**
+ * @brief Remove and return the first node from the list
+ * @param pHead - Pointer to the head of the list.
+ * @return - Pointer to the removed first node, NULL if list is empty.
+ */
+stLinkedListNode *fnLinkedListPopFirst(stLinkedListNode **pHead);
+
+/**
+ * @brief Remove and return the last node from the list
+ * @param pHead - Pointer to the head of the list.
+ * @return - Pointer to the removed last node, NULL if list is empty.
+ */
+stLinkedListNode *fnLinkedListPopLast(stLinkedListNode **pHead);
 
 #endif
