@@ -63,10 +63,10 @@ int fnLinkedListGetLength(stLinkedListNode *pstHead) {
   return iLength;
 }
 
-int fnLinkedListRemoveNode(stLinkedListNode **pstHead, unsigned int uiIndex) {
+int fnLinkedListRemoveNode(stLinkedListNode **pstHead, int iIndex) {
   if (*pstHead == NULL) { return 1; }
 
-  if (uiIndex == 0) {
+  if (iIndex == 0) {
     stLinkedListNode *pstTemp = *pstHead;
     *pstHead = (*pstHead)->pNext;
 
@@ -78,7 +78,7 @@ int fnLinkedListRemoveNode(stLinkedListNode **pstHead, unsigned int uiIndex) {
   stLinkedListNode *pstCurrent = *pstHead;
 
   // Traverse to find the node just before the one to remove
-  for (unsigned int i = 0; i < uiIndex - 1; i++) {
+  for (int i = 0; i < iIndex - 1; i++) {
     if (pstCurrent->pNext == NULL) { return 1; } // Index out of bounds
     pstCurrent = pstCurrent->pNext;
   }
@@ -103,4 +103,93 @@ void fnLinkedListItterateFunction(stLinkedListNode *pstHead,
     fnpCallback(pParameterGivenToCallback, pstCurrent->pData);
     pstCurrent = pstCurrent->pNext;
   }
+}
+
+stLinkedListNode *fnLinkedListGet(stLinkedListNode **pHead, int iIndex) {
+	stLinkedListNode *current = *pHead;
+
+	// traverse list til index-th element
+	for (int i = iIndex; i > 0; i--) {
+		if (current == NULL) { return NULL; }
+		current = current->pNext;
+	}
+
+	return current;
+}
+
+stLinkedListNode *fnLinkedListGetFirst(stLinkedListNode **pHead) {
+	if (pHead == NULL) { return NULL; }
+	return *pHead;
+}
+
+stLinkedListNode *fnLinkedListGetLast(stLinkedListNode **pHead) {
+	if (pHead == NULL) { return NULL; }
+	if (*pHead == NULL) { return NULL; }
+
+	stLinkedListNode *current = *pHead;
+	// traverse til end of list
+	while (current->pNext != NULL) {
+		current = current->pNext;
+	}
+
+	return current;
+}
+
+stLinkedListNode *fnLinkedListPop(stLinkedListNode **pHead, int iIndex) {
+	if (pHead == NULL) { return NULL; }
+	if (*pHead == NULL) { return NULL; }
+	if (iIndex == 0) { 
+		stLinkedListNode *target = *pHead;
+		*pHead = target->pNext;
+		target->pNext = NULL;
+		return target;
+	}
+
+	stLinkedListNode *current = *pHead;
+	// travwerse til (iIndex-1)-th position
+	for (int i = iIndex - 1; i > 0; i--) {
+		if (current == NULL) { return NULL; }
+		current = current->pNext;
+	}
+
+	stLinkedListNode *target = current->pNext;
+	if (target == NULL) { return NULL; }
+
+	// cut target node from list
+	current->pNext = target->pNext;
+	target->pNext = NULL;
+
+	return target;
+}
+
+stLinkedListNode *fnLinkedListPopFirst(stLinkedListNode **pHead) {
+	if (pHead == NULL) { return NULL; }
+	if (*pHead == NULL) { return NULL; }
+
+	stLinkedListNode *target = *pHead;
+	*pHead = target->pNext;
+	target->pNext = NULL;
+
+	return target;
+}
+
+stLinkedListNode *fnLinkedListPopLast(stLinkedListNode **pHead) {
+	if (pHead == NULL) { return NULL; }
+	if (*pHead == NULL) { return NULL; }
+	if ((*pHead)->pNext == NULL) { 
+		stLinkedListNode *target = *pHead;
+		pHead = NULL;
+		return target; 
+	}
+
+	stLinkedListNode *current = *pHead;
+	// travwerse til end
+	while (current->pNext->pNext != NULL) {
+		current = current->pNext;
+	}
+
+	stLinkedListNode *target = current->pNext;
+	current->pNext = NULL;
+
+	return target;
 }
