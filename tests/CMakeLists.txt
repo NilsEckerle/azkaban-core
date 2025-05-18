@@ -1,7 +1,9 @@
 set(TEST_SOURCES
-    test_linked_list.c
     # test_another_feature.c
 )
+
+# Add the linked_list subdirectory for individual tests
+add_subdirectory(linked_list)
 
 foreach(test_src ${TEST_SOURCES})
     get_filename_component(test_name ${test_src} NAME_WE)

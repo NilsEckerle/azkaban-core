@@ -1,0 +1,49 @@
+#include "linked_list.h"
+#include <assert.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+void test_fnLinkedListPop() {
+	// setup
+  int *piData1 = malloc(sizeof(int));
+  int *piData2 = malloc(sizeof(int));
+  int *piData3 = malloc(sizeof(int));
+  int *piData4 = malloc(sizeof(int));
+  *piData1 = 1;
+  *piData2 = 2;
+  *piData3 = 3;
+  *piData4 = 4;
+  stLinkedListNode *pstHead = fnLinkedListInit(piData1);
+  fnLinkedListAppendNode(&pstHead, piData2);
+  fnLinkedListAppendNode(&pstHead, piData3);
+  fnLinkedListAppendNode(&pstHead, piData4);
+
+	// test
+	stLinkedListNode *tmp1 = fnLinkedListPop(&pstHead, 0);
+	stLinkedListNode *tmp2 = fnLinkedListPop(&pstHead, 1);
+	stLinkedListNode *tmp3 = fnLinkedListPop(&pstHead, 13);
+	assert(tmp1->pData == piData1);
+	assert(tmp2->pData == piData3);
+	assert(tmp3 == NULL);
+	assert(pstHead->pData == piData2);
+	assert(pstHead->pNext->pData == piData4);
+
+	// cleanup
+  free(piData1);
+  free(piData2);
+  free(piData3);
+  free(piData4);
+  free(tmp1);
+  free(tmp2);
+  free(pstHead->pNext);
+  free(pstHead);
+
+  printf("test_fnLinkedListPop passed\n");
+}
+
+int main() {
+  printf("Running test_fnLinkedListPop...\n");
+  test_fnLinkedListPop();
+  printf("test_fnLinkedListPop passed successfully!\n");
+  return 0;
+}
