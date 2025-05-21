@@ -35,7 +35,7 @@ int folder_list_get_length(FolderNode *head) {
 }
 
 EntryNode *entry_list_init(void) { return NULL; }
-void entry_list_prepend_item(EntryNode **head, Entry entry) {
+void entry_list_prepend_item(EntryNode **head, stEntry entry) {
   EntryNode *new_node = malloc(sizeof(EntryNode));
   if (new_node == NULL) {
     perror("Failed to allocate memory for new node");
@@ -46,7 +46,7 @@ void entry_list_prepend_item(EntryNode **head, Entry entry) {
   *head = new_node;
 }
 void entry_list_itterate_function(EntryNode *head,
-                                  void *callback(void *parameter, Entry entry),
+                                  void *callback(void *parameter, stEntry entry),
                                   void *parameter_first_given_to_callback) {
   EntryNode *current = head;
   while (current != NULL) {
@@ -68,7 +68,7 @@ int entry_list_get_length(EntryNode *head) {
 
 EntryDetailNode *entryDetail_list_init(void) { return NULL; }
 void entryDetail_list_prepend_item(EntryDetailNode **head,
-                                   EntryDetail entry_detail) {
+                                   stEntryDetail entry_detail) {
   EntryDetailNode *new_node = malloc(sizeof(EntryDetailNode));
   if (new_node == NULL) {
     perror("Failed to allocate memory for new node");
@@ -81,7 +81,7 @@ void entryDetail_list_prepend_item(EntryDetailNode **head,
 
 void entryDetail_list_itterate_function(
     EntryDetailNode *head,
-    void *callback(void *parameter, EntryDetail entry_detail),
+    void *callback(void *parameter, stEntryDetail entry_detail),
     void *parameter_first_given_to_callback) {
   EntryDetailNode *current = head;
   while (current != NULL) {
