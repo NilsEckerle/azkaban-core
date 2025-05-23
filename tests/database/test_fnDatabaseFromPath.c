@@ -3,16 +3,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void test_fnDdatabaseFromPath() {
-	stDecryptedDatabase *stDecryptedDb = test_fnDdatabaseFromPath("test/test.db");
+void test_ddatabase_from_path() {
+	t_decrypted_database *tddb_db = test_database_from_path("test/test.db");
 	assert(
 
-  printf("test_fnLinkedListAppendNode passed\n");
+  printf("test_linked_list_append_node passed\n");
 }
 
 int main() {
-  printf("Running test_fnLinkedListAppendNode...\n");
-  test_fnDdatabaseFromPath();
-  printf("test_fnLinkedListAppendNode passed successfully!\n");
+  printf("Running test_linked_list_append_node...\n");
+  test_ddatabase_from_path();
+  printf("test_linked_list_append_node passed successfully!\n");
   return 0;
 }

@@ -20,7 +20,7 @@ typedef struct {
 } t_entry_detail_content;
 
 /**
- * @struct EntryDetail
+ * @struct st_entry_detail
  * @brief Represents detailed information associated with an entry.
  * 
  * Each entry detail contains metadata such as ID, a reference to its parent
