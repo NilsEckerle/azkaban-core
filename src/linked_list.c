@@ -1,195 +1,199 @@
 #include "linked_list.h"
 #include <stdlib.h>
 
-stLinkedListNode *fnLinkedListInit(void *pData) {
-  stLinkedListNode *pstNode = malloc(sizeof(stLinkedListNode));
-  if (pstNode == NULL) {
+t_linked_list_node *linked_list_init(void *vp_data) {
+  t_linked_list_node *t_ll_node = malloc(sizeof(t_linked_list_node));
+  if (t_ll_node == NULL) {
     return NULL;
   }
 
-  pstNode->pData = pData;
-  pstNode->pNext = NULL;
+  t_ll_node->vp_data = vp_data;
+  t_ll_node->stp_ll_next = NULL;
 
-  return pstNode;
+  return t_ll_node;
 }
 
-int fnLinkedListPrependNode(stLinkedListNode **pstHead, void *pData) {
-  if (pstHead == NULL) { return 1; }
-  if (*pstHead == NULL) { return 1; }
-  if (pData == NULL) { return 1; }
+int linked_list_prepend_node(t_linked_list_node **tpp_ll_head, void *vp_data) {
+  if (tpp_ll_head == NULL) { return 1; }
+  if (*tpp_ll_head == NULL) { return 1; }
+  if (vp_data == NULL) { return 1; }
 
-  stLinkedListNode *pstNewNode = fnLinkedListInit(pData);
-  if (pstNewNode == NULL) { return 1; }
+  t_linked_list_node *tp_ll_new_node = linked_list_init(vp_data);
+  if (tp_ll_new_node == NULL) { return 1; }
 
   // prepend node
-  pstNewNode->pNext = *pstHead;
-  *pstHead = pstNewNode;
+  tp_ll_new_node->stp_ll_next = *tpp_ll_head;
+  *tpp_ll_head = tp_ll_new_node;
 
   return 0;
 }
 
-int fnLinkedListAppendNode(stLinkedListNode **pstHead, void *pData) {
-  if (pstHead == NULL) { return 1; }
-  if (*pstHead == NULL) { return 1; }
-  if (pData == NULL) { return 1; }
+int linked_list_append_node(t_linked_list_node **tpp_ll_head, void *vp_data) {
+  if (tpp_ll_head == NULL) { return 1; }
+  if (*tpp_ll_head == NULL) { return 1; }
+  if (vp_data == NULL) { return 1; }
 
-  stLinkedListNode *pstNewNode = fnLinkedListInit(pData);
-  if (pstNewNode == NULL) { return 1; }
+  t_linked_list_node *tp_ll_new_node = linked_list_init(vp_data);
+  if (tp_ll_new_node == NULL) { return 1; }
 
   // traverse til end of list
-  stLinkedListNode *pstCurrent = *pstHead;
-  while (pstCurrent->pNext != NULL) {
-    pstCurrent = pstCurrent->pNext;
+  t_linked_list_node *pst_current = *tpp_ll_head;
+  while (pst_current->stp_ll_next != NULL) {
+    pst_current = pst_current->stp_ll_next;
   }
 
   // append node
-  pstCurrent->pNext = pstNewNode;
+  pst_current->stp_ll_next = tp_ll_new_node;
 
   return 0;
 }
 
-int fnLinkedListGetLength(stLinkedListNode *pstHead) {
-  if (pstHead == NULL) { return 0; }
+unsigned int linked_list_get_length(t_linked_list_node *tpp_ll_head) {
+  if (tpp_ll_head == NULL) { return 0; }
 
-  int iLength = 1;
-  stLinkedListNode *pstCurrent = pstHead;
+  unsigned int i_length = 1;
+  t_linked_list_node *tp_ll_current = tpp_ll_head;
 
   // traverse list til end
-  while (pstCurrent->pNext != NULL) {
-    iLength++;
-    pstCurrent = pstCurrent->pNext;
+  while (tp_ll_current->stp_ll_next != NULL) {
+    i_length++;
+    tp_ll_current = tp_ll_current->stp_ll_next;
   }
 
-  return iLength;
+  return i_length;
 }
 
-int fnLinkedListRemoveNode(stLinkedListNode **pstHead, int iIndex) {
-  if (*pstHead == NULL) { return 1; }
+int linked_list_remove_node(t_linked_list_node **tpp_ll_head, int i_index) {
+  if (*tpp_ll_head == NULL) { return 1; }
 
-  if (iIndex == 0) {
-    stLinkedListNode *pstTemp = *pstHead;
-    *pstHead = (*pstHead)->pNext;
+  if (i_index == 0) {
+    t_linked_list_node *tp_ll_temp = *tpp_ll_head;
+    *tpp_ll_head = (*tpp_ll_head)->stp_ll_next;
 
-    free(pstTemp);
+    free(tp_ll_temp);
 
     return 0;
   }
 
-  stLinkedListNode *pstCurrent = *pstHead;
+  t_linked_list_node *tp_ll_current = *tpp_ll_head;
 
   // Traverse to find the node just before the one to remove
-  for (int i = 0; i < iIndex - 1; i++) {
-    if (pstCurrent->pNext == NULL) { return 1; } // Index out of bounds
-    pstCurrent = pstCurrent->pNext;
+  for (int i = 0; i < i_index - 1; i++) {
+    if (tp_ll_current->stp_ll_next == NULL) { return 1; } // Index out of bounds
+    tp_ll_current = tp_ll_current->stp_ll_next;
   }
   
   // Check if we're trying to remove a node past the end
-  if (pstCurrent->pNext == NULL) return 1;
+  if (tp_ll_current->stp_ll_next == NULL) return 1;
   
-  // Remove the pNext node (which is at position 'index')
-  stLinkedListNode *pstTemp = pstCurrent->pNext;
-  pstCurrent->pNext = pstTemp->pNext;
+  // Remove the stp_ll_next node (which is at position 'index')
+  t_linked_list_node *tp_ll_temp = tp_ll_current->stp_ll_next;
+  tp_ll_current->stp_ll_next = tp_ll_temp->stp_ll_next;
 
-  free(pstTemp);
+  free(tp_ll_temp);
 
   return 0;
 }
 
-void fnLinkedListItterateFunction(stLinkedListNode *pstHead,
-                      void *fnpCallback(void *pParameter, void* pData),
-                      void *pParameterGivenToCallback) {
-  stLinkedListNode *pstCurrent = pstHead;
-  while (pstCurrent != NULL) {
-    fnpCallback(pParameterGivenToCallback, pstCurrent->pData);
-    pstCurrent = pstCurrent->pNext;
+void linked_list_itterate_function(t_linked_list_node *tp_ll_head,
+											 void *fnp_callback(void *vp_parameter, void *vp_data),
+											 void *vp_parameter_passed_to_callback) {
+  t_linked_list_node *pst_current = tp_ll_head;
+  while (pst_current != NULL) {
+    fnp_callback(vp_parameter_passed_to_callback, pst_current->vp_data);
+    pst_current = pst_current->stp_ll_next;
   }
 }
 
-stLinkedListNode *fnLinkedListGet(stLinkedListNode **pHead, int iIndex) {
-	stLinkedListNode *current = *pHead;
+t_linked_list_node *linked_list_get(t_linked_list_node **tpp_ll_head, int i_index) {
+	t_linked_list_node *tp_ll_current = *tpp_ll_head;
 
 	// traverse list til index-th element
-	for (int i = iIndex; i > 0; i--) {
-		if (current == NULL) { return NULL; }
-		current = current->pNext;
+	for (int i = i_index; i > 0; i--) {
+		if (tp_ll_current == NULL) { return NULL; }
+		tp_ll_current = tp_ll_current->stp_ll_next;
 	}
 
-	return current;
+	return tp_ll_current;
 }
 
-stLinkedListNode *fnLinkedListGetFirst(stLinkedListNode **pHead) {
-	if (pHead == NULL) { return NULL; }
-	return *pHead;
+t_linked_list_node *linked_list_get_first(t_linked_list_node **tpp_ll_head) {
+	if (tpp_ll_head == NULL) { return NULL; }
+	return *tpp_ll_head;
 }
 
-stLinkedListNode *fnLinkedListGetLast(stLinkedListNode **pHead) {
-	if (pHead == NULL) { return NULL; }
-	if (*pHead == NULL) { return NULL; }
+t_linked_list_node *linked_list_get_last(t_linked_list_node **tpp_ll_head) {
+	if (tpp_ll_head == NULL) { return NULL; }
+	if (*tpp_ll_head == NULL) { return NULL; }
 
-	stLinkedListNode *current = *pHead;
+	t_linked_list_node *tp_ll_current = *tpp_ll_head;
 	// traverse til end of list
-	while (current->pNext != NULL) {
-		current = current->pNext;
+	while (tp_ll_current->stp_ll_next != NULL) {
+		tp_ll_current = tp_ll_current->stp_ll_next;
 	}
 
-	return current;
+	return tp_ll_current;
 }
 
-stLinkedListNode *fnLinkedListPop(stLinkedListNode **pHead, int iIndex) {
-	if (pHead == NULL) { return NULL; }
-	if (*pHead == NULL) { return NULL; }
-	if (iIndex == 0) { 
-		stLinkedListNode *target = *pHead;
-		*pHead = target->pNext;
-		target->pNext = NULL;
-		return target;
+t_linked_list_node *linked_list_pop(t_linked_list_node **tpp_ll_head, int i_index) {
+	// guards
+	if (tpp_ll_head == NULL) { return NULL; }
+	if (*tpp_ll_head == NULL) { return NULL; }
+	if (i_index == 0) { 
+		t_linked_list_node *tp_ll_target = *tpp_ll_head;
+		*tpp_ll_head = tp_ll_target->stp_ll_next;
+		tp_ll_target->stp_ll_next = NULL;
+		return tp_ll_target;
 	}
 
-	stLinkedListNode *current = *pHead;
-	// travwerse til (iIndex-1)-th position
-	for (int i = iIndex - 1; i > 0; i--) {
-		if (current == NULL) { return NULL; }
-		current = current->pNext;
+	// travwerse til (i_index-1)-th position
+	t_linked_list_node *tp_ll_current = *tpp_ll_head;
+	for (int i = i_index - 1; i > 0; i--) {
+		if (tp_ll_current == NULL) { return NULL; }
+		tp_ll_current = tp_ll_current->stp_ll_next;
 	}
 
-	stLinkedListNode *target = current->pNext;
-	if (target == NULL) { return NULL; }
+	// next element is the target
+	t_linked_list_node *tp_ll_target = tp_ll_current->stp_ll_next;
+	if (tp_ll_target == NULL) { return NULL; }
 
 	// cut target node from list
-	current->pNext = target->pNext;
-	target->pNext = NULL;
+	tp_ll_current->stp_ll_next = tp_ll_target->stp_ll_next;
+	tp_ll_target->stp_ll_next = NULL;
 
-	return target;
+	return tp_ll_target;
 }
 
-stLinkedListNode *fnLinkedListPopFirst(stLinkedListNode **pHead) {
-	if (pHead == NULL) { return NULL; }
-	if (*pHead == NULL) { return NULL; }
+t_linked_list_node *linked_list_pop_first(t_linked_list_node **tpp_ll_head) {
+	if (tpp_ll_head == NULL) { return NULL; }
+	if (*tpp_ll_head == NULL) { return NULL; }
 
-	stLinkedListNode *target = *pHead;
-	*pHead = target->pNext;
-	target->pNext = NULL;
+	t_linked_list_node *tp_ll_target = *tpp_ll_head;
+	*tpp_ll_head = tp_ll_target->stp_ll_next;
+	tp_ll_target->stp_ll_next = NULL;
 
-	return target;
+	return tp_ll_target;
 }
 
-stLinkedListNode *fnLinkedListPopLast(stLinkedListNode **pHead) {
-	if (pHead == NULL) { return NULL; }
-	if (*pHead == NULL) { return NULL; }
-	if ((*pHead)->pNext == NULL) { 
-		stLinkedListNode *target = *pHead;
-		pHead = NULL;
-		return target; 
+t_linked_list_node *linked_list_pop_last(t_linked_list_node **tpp_ll_head) {
+	// guards
+	if (tpp_ll_head == NULL) { return NULL; }
+	if (*tpp_ll_head == NULL) { return NULL; }
+	if ((*tpp_ll_head)->stp_ll_next == NULL) { 
+		t_linked_list_node *tp_ll_target = *tpp_ll_head;
+		tpp_ll_head = NULL;
+		return tp_ll_target; 
 	}
 
-	stLinkedListNode *current = *pHead;
 	// travwerse til end
-	while (current->pNext->pNext != NULL) {
-		current = current->pNext;
+	t_linked_list_node *tp_ll_current = *tpp_ll_head;
+	while (tp_ll_current->stp_ll_next->stp_ll_next != NULL) {
+		tp_ll_current = tp_ll_current->stp_ll_next;
 	}
 
-	stLinkedListNode *target = current->pNext;
-	current->pNext = NULL;
+	// cut node
+	t_linked_list_node *tp_ll_target = tp_ll_current->stp_ll_next;
+	tp_ll_current->stp_ll_next = NULL;
 
-	return target;
+	return tp_ll_target;
 }

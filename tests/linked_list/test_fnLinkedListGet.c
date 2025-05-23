@@ -3,42 +3,42 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void test_fnLinkedListGet() {
+void test_linked_list_get() {
 	// setup
-  int *piData1 = malloc(sizeof(int));
-  int *piData2 = malloc(sizeof(int));
-  int *piData3 = malloc(sizeof(int));
-  int *piData4 = malloc(sizeof(int));
-  *piData1 = 1;
-  *piData2 = 2;
-  *piData3 = 3;
-  *piData4 = 4;
-  stLinkedListNode *pstHead = fnLinkedListInit(piData1);
-  fnLinkedListAppendNode(&pstHead, piData2);
-  fnLinkedListAppendNode(&pstHead, piData3);
-  fnLinkedListAppendNode(&pstHead, piData4);
+  int *ivp_data_1 = malloc(sizeof(int));
+  int *ivp_data_2 = malloc(sizeof(int));
+  int *ivp_data_3 = malloc(sizeof(int));
+  int *ivp_data_4 = malloc(sizeof(int));
+  *ivp_data_1 = 1;
+  *ivp_data_2 = 2;
+  *ivp_data_3 = 3;
+  *ivp_data_4 = 4;
+  t_linked_list_node *tp_ll_head = linked_list_init(ivp_data_1);
+  linked_list_append_node(&tp_ll_head, ivp_data_2);
+  linked_list_append_node(&tp_ll_head, ivp_data_3);
+  linked_list_append_node(&tp_ll_head, ivp_data_4);
 
 	// test
-	assert(fnLinkedListGet(&pstHead, 0)->pData == piData1);
-	assert(fnLinkedListGet(&pstHead, 2)->pData == piData3);
-	assert(fnLinkedListGet(&pstHead, 4) == NULL);
+	assert(linked_list_get(&tp_ll_head, 0)->vp_data == ivp_data_1);
+	assert(linked_list_get(&tp_ll_head, 2)->vp_data == ivp_data_3);
+	assert(linked_list_get(&tp_ll_head, 4) == NULL);
 
 	// cleanup
-  free(piData1);
-  free(piData2);
-  free(piData3);
-  free(piData4);
-  free(pstHead->pNext->pNext->pNext);
-  free(pstHead->pNext->pNext);
-  free(pstHead->pNext);
-  free(pstHead);
+  free(ivp_data_1);
+  free(ivp_data_2);
+  free(ivp_data_3);
+  free(ivp_data_4);
+  free(tp_ll_head->stp_ll_next->stp_ll_next->stp_ll_next);
+  free(tp_ll_head->stp_ll_next->stp_ll_next);
+  free(tp_ll_head->stp_ll_next);
+  free(tp_ll_head);
 
-  printf("test_fnLinkedListGet passed\n");
+  printf("test_linked_list_get passed\n");
 }
 
 int main() {
-  printf("Running test_fnLinkedListGet...\n");
-  test_fnLinkedListGet();
-  printf("test_fnLinkedListGet passed successfully!\n");
+  printf("Running test_linked_list_get...\n");
+  test_linked_list_get();
+  printf("test_linked_list_get passed successfully!\n");
   return 0;
 }

@@ -3,52 +3,52 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void test_fnLinkedListPrependNode() {
+void test_linked_list_prepend_node() {
   // Start with empty list
-  stLinkedListNode *pstHead = NULL;
+  t_linked_list_node *tp_ll_head = NULL;
 
   // Test with NULL head pointer
-  int iRc = fnLinkedListPrependNode(NULL, NULL);
-  assert(iRc == 1); // Should fail
+  int i_rc = linked_list_prepend_node(NULL, NULL);
+  assert(i_rc == 1); // Should fail
 
   // Test with NULL data
-  iRc = fnLinkedListPrependNode(&pstHead, NULL);
-  assert(iRc == 1); // Should fail
+  i_rc = linked_list_prepend_node(&tp_ll_head, NULL);
+  assert(i_rc == 1); // Should fail
 
   // Test prepend to NULL
-  int iData1 = 42;
-  iRc = fnLinkedListPrependNode(&pstHead, &iData1);
-  assert(iRc == 1); // Should fail
+  int i_data1 = 42;
+  i_rc = linked_list_prepend_node(&tp_ll_head, &i_data1);
+  assert(i_rc == 1); // Should fail
 
-  pstHead = fnLinkedListInit(0);
-  stLinkedListNode *pstOldHead = pstHead;
+  tp_ll_head = linked_list_init(0);
+  t_linked_list_node *pst_old_head = tp_ll_head;
   // Test successful prepend to empty list
-  int iData2 = 42;
-  iRc = fnLinkedListPrependNode(&pstHead, &iData2);
-  assert(iRc == 0); // Should succeed
-  assert(pstHead != NULL);
-  assert(pstHead->pData == &iData2);
-  assert(pstHead->pNext == pstOldHead);
+  int i_data2 = 42;
+  i_rc = linked_list_prepend_node(&tp_ll_head, &i_data2);
+  assert(i_rc == 0); // Should succeed
+  assert(tp_ll_head != NULL);
+  assert(tp_ll_head->vp_data == &i_data2);
+  assert(tp_ll_head->stp_ll_next == pst_old_head);
 
   // Test prepend to non-empty list
-  int iData3 = 84;
-  iRc = fnLinkedListPrependNode(&pstHead, &iData3);
-  assert(iRc == 0); // Should succeed
-  assert(pstHead->pData == &iData3);
-  assert(pstHead->pNext != NULL);
-  assert(pstHead->pNext->pData == &iData2);
+  int i_data3 = 84;
+  i_rc = linked_list_prepend_node(&tp_ll_head, &i_data3);
+  assert(i_rc == 0); // Should succeed
+  assert(tp_ll_head->vp_data == &i_data3);
+  assert(tp_ll_head->stp_ll_next != NULL);
+  assert(tp_ll_head->stp_ll_next->vp_data == &i_data2);
 
   // Clean up
-  free(pstHead->pNext->pNext);
-  free(pstHead->pNext);
-  free(pstHead);
+  free(tp_ll_head->stp_ll_next->stp_ll_next);
+  free(tp_ll_head->stp_ll_next);
+  free(tp_ll_head);
 
-  printf("test_fnLinkedListPrependNode passed\n");
+  printf("test_linked_list_prepend_node passed\n");
 }
 
 int main() {
-  printf("Running test_fnLinkedListPrependNode...\n");
-  test_fnLinkedListPrependNode();
-  printf("test_fnLinkedListPrependNode passed successfully!\n");
+  printf("Running test_linked_list_prepend_node...\n");
+  test_linked_list_prepend_node();
+  printf("test_linked_list_prepend_node passed successfully!\n");
   return 0;
 }

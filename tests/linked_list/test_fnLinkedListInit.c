@@ -3,20 +3,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void test_fnLinkedListInit() {
-  stLinkedListNode *pstNode = fnLinkedListInit(NULL);
-  assert(pstNode != NULL);
+void test_linked_list_init() {
+  t_linked_list_node *pst_node = linked_list_init(NULL);
+  assert(pst_node != NULL);
 
-  int iData = 12;
-  pstNode = fnLinkedListInit(&iData);
+  int i_data = 12;
+  pst_node = linked_list_init(&i_data);
 
-  free(pstNode);
-  printf("test_fnLinkedListInit passed\n");
+  free(pst_node);
+  printf("test_linked_list_init passed\n");
 }
 
 int main() {
-  printf("Running test_fnLinkedListInit...\n");
-  test_fnLinkedListInit();
-  printf("test_fnLinkedListInit passed successfully!\n");
+  printf("Running test_linked_list_init...\n");
+  test_linked_list_init();
+  printf("test_linked_list_init passed successfully!\n");
   return 0;
 }

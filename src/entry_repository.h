@@ -5,20 +5,20 @@
 #include "entry.h"
 #include "database.h"
 
-stEntry *fnGetEntry(stDecryptedDatabase *stDecryptedDb, int iId);
+t_entry *fn_get_entry(t_decrypted_database *t_ddb_db, int i_id);
 
-stEntry *fnSearchEntry(stDecryptedDatabase *stDecryptedDb, char *cpSearchName);
+t_entry *fn_search_entry(t_decrypted_database *t_ddb_db, char *cp_search_name);
 
-stLinkedListNode *fnGetEntryList(stDecryptedDatabase *stDecryptedDb);
+t_linked_list_node *fn_get_entry_list(t_decrypted_database *t_ddb_db);
 
-int fnCreateEntry(stDecryptedDatabase *stDecryptedDb, stEntry *stNewEntry);
+int fn_create_entry(t_decrypted_database *t_ddb_db, t_entry *t_new_entry);
 
-int fnDeleteEntry(stDecryptedDatabase *stDecryptedDb, int iId);
+int fn_delete_entry(t_decrypted_database *t_ddb_db, int i_id);
 
-int fnDeleteEntryHard(stDecryptedDatabase *stDecryptedDb, int iId);
+int fn_delete_entry_hard(t_decrypted_database *t_ddb_db, int i_id);
 
-int fnChangeEntry(stDecryptedDatabase *stDecryptedDb, int iOldId, stEntry *stNewEntry);
+int fn_change_entry(t_decrypted_database *t_ddb_db, int i_old_id, t_entry *t_new_entry);
 
-int fnSetupTable(stDecryptedDatabase *stDecryptedDb);
+int fn_setup_table(t_decrypted_database *t_ddb_db);
 
 #endif

@@ -5,105 +5,105 @@
 #include <stdlib.h>
 
 /**
- * @struct stLinkedListNode
+ * @struct st_linked_list_node
  * @brief Linked list node for Entry structures.
  */
-typedef struct stLinkedListNode {
-  void* pData;        /**< Entry pData. */
-	struct stLinkedListNode *pNext; /**< Pointer to the next node. */
-} stLinkedListNode;
+typedef struct st_linked_list_node {
+  void* vp_data;        /**< Entry p_data. */
+	struct st_linked_list_node *stp_ll_next; /**< Pointer to the next node. */
+} t_linked_list_node;
 
 /**
  * @brief Initializes an list.
- * @param pData - pointer to pData
- * @return - Pointer to the pHead of the list if successful - NULL otherwise
+ * @param p_data - pointer to p_data
+ * @return - Pointer to the p_head of the list if successful - NULL otherwise
  */
-stLinkedListNode *fnLinkedListInit(void *pData);
+t_linked_list_node *linked_list_init(void *vp_data);
 
 /**
  * @brief Prepends an item to the list.
- * @param pHead - Pointer to the pHead of the list.
- * @param pData - pointer to pData
+ * @param p_head - Pointer to the p_head of the list.
+ * @param p_data - pointer to p_data
  * @return - 0 if successful - otherwise 1
  */
-int fnLinkedListPrependNode(stLinkedListNode **pHead, void* pData);
+int linked_list_prepend_node(t_linked_list_node **tpp_ll_head, void* vp_data);
 
 /**
  * @brief append an item to the list.
- * @param pHead - Pointer to the pHead of the list.
- * @param pData - pointer to pData
+ * @param p_head - Pointer to the p_head of the list.
+ * @param p_data - pointer to p_data
  * @return - 0 if successful - otherwise 1
  */
-int fnLinkedListAppendNode(stLinkedListNode **pHead, void* pData);
+int linked_list_append_node(t_linked_list_node **tpp_ll_head, void *vp_data);
 
 /**
  * @brief Gets the length of the list.
- * @param pHead - Pointer to the pHead of the list.
+ * @param p_head - Pointer to the p_head of the list.
  * @return - Length of the list.
  */
-int fnLinkedListGetLength(stLinkedListNode *pHead);
+unsigned int linked_list_get_length(t_linked_list_node *tp_ll_head);
 
 /**
  * @brief remove a the i-th element in the list while preserving linked list conectivity, counting starts at 0.
- * this doesnt free the pData.
- * @param pHead - Pointer to the pHead of the list.
+ * this doesnt free the p_data.
+ * @param p_head - Pointer to the p_head of the list.
  * @param index - the element at this location is deleted
  * @return - 0 if successful - 1 if index is out of range- otherwise 2
  */
-int fnLinkedListRemoveNode(stLinkedListNode **pHead, int index);
+int linked_list_remove_node(t_linked_list_node **tp_ll_head, int i_index);
 
 /**
  * @brief Iterates over the list and applies a callback function to each entry.
- * @param pHead - Pointer to the pHead of the list.
- * @param fnpCallback - Callback function to apply.
- * @param pParameterGivenToCallback - Additional parameter for the callback.
+ * @param p_head - Pointer to the p_head of the list.
+ * @param fnp_callback - Callback function to apply.
+ * @param p_parameter_given_to_callback - Additional parameter for the callback.
  */
-void fnLinkedListItterateFunction(stLinkedListNode *pHead,
-											 void *fnpCallback(void *pParameter, void* pData),
-											 void *pParameterGivenToCallback);
+void linked_list_itterate_function(t_linked_list_node *tp_ll_head,
+											 void *fnp_callback(void *vp_parameter, void *vp_data),
+											 void *vp_parameter_passed_to_callback);
 
 /**
  * @brief Get node at position index (starting at 0)
- * @param pHead - Pointer to the head of the list.
- * @param iIndex - Index of the node to retrieve.
+ * @param p_head - Pointer to the head of the list.
+ * @param i_index - Index of the node to retrieve.
  * @return - Pointer to the node at the specified index, NULL if index is out of range.
  */
-stLinkedListNode *fnLinkedListGet(stLinkedListNode **pHead, int iIndex);
+t_linked_list_node *linked_list_get(t_linked_list_node **tp_ll_head, int i_index);
 
 /**
  * @brief Get first node in the list
- * @param pHead - Pointer to the head of the list.
+ * @param p_head - Pointer to the head of the list.
  * @return - Pointer to the first node, NULL if list is empty.
  */
-stLinkedListNode *fnLinkedListGetFirst(stLinkedListNode **pHead);
+t_linked_list_node *linked_list_get_first(t_linked_list_node **tp_ll_head);
 
 /**
  * @brief Get last node in the list
- * @param pHead - Pointer to the head of the list.
+ * @param p_head - Pointer to the head of the list.
  * @return - Pointer to the last node, NULL if list is empty.
  */
-stLinkedListNode *fnLinkedListGetLast(stLinkedListNode **pHead);
+t_linked_list_node *linked_list_get_last(t_linked_list_node **tp_ll_head);
 
 /**
  * @brief Remove and return the node at the specified index from the list (starting at 0)
- * @param pHead - Pointer to the head of the list.
- * @param iIndex - Index of the node to pop.
+ * @param p_head - Pointer to the head of the list.
+ * @param i_index - Index of the node to pop.
  * @return - Pointer to the removed node, NULL if index is out of range.
  */
-stLinkedListNode *fnLinkedListPop(stLinkedListNode **pHead, int iIndex);
+t_linked_list_node *linked_list_pop(t_linked_list_node **tp_ll_head, int i_index);
 
 /**
  * @brief Remove and return the first node from the list
- * @param pHead - Pointer to the head of the list.
+ * @param p_head - Pointer to the head of the list.
  * @return - Pointer to the removed first node, NULL if list is empty.
  */
-stLinkedListNode *fnLinkedListPopFirst(stLinkedListNode **pHead);
+t_linked_list_node *linked_list_pop_first(t_linked_list_node **tp_ll_head);
 
 /**
  * @brief Remove and return the last node from the list
- * @param pHead - Pointer to the head of the list.
+ * @param p_head - Pointer to the head of the list.
  * @return - Pointer to the removed last node, NULL if list is empty.
  */
-stLinkedListNode *fnLinkedListPopLast(stLinkedListNode **pHead);
+t_linked_list_node *linked_list_pop_last(t_linked_list_node **tp_ll_head);
 
 #endif

@@ -3,44 +3,44 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void test_fnLinkedListPopFirst() {
+void test_linked_list_pop_first() {
 	// setup
-  int *piData1 = malloc(sizeof(int));
-  int *piData2 = malloc(sizeof(int));
-  int *piData3 = malloc(sizeof(int));
-  int *piData4 = malloc(sizeof(int));
-  *piData1 = 1;
-  *piData2 = 2;
-  *piData3 = 3;
-  *piData4 = 4;
-  stLinkedListNode *pstHead = fnLinkedListInit(piData1);
-  fnLinkedListAppendNode(&pstHead, piData2);
-  fnLinkedListAppendNode(&pstHead, piData3);
-  fnLinkedListAppendNode(&pstHead, piData4);
+  int *ip_data_1 = malloc(sizeof(int));
+  int *ip_data_2 = malloc(sizeof(int));
+  int *ip_data_3 = malloc(sizeof(int));
+  int *ip_data_4 = malloc(sizeof(int));
+  *ip_data_1 = 1;
+  *ip_data_2 = 2;
+  *ip_data_3 = 3;
+  *ip_data_4 = 4;
+  t_linked_list_node *tp_ll_head = linked_list_init(ip_data_1);
+  linked_list_append_node(&tp_ll_head, ip_data_2);
+  linked_list_append_node(&tp_ll_head, ip_data_3);
+  linked_list_append_node(&tp_ll_head, ip_data_4);
 
 	// test
-	stLinkedListNode *tmp1 = fnLinkedListPopFirst(&pstHead);
-	assert(tmp1->pData == piData1);
-	assert(pstHead->pData == piData2);
-	assert(pstHead->pNext->pData == piData3);
-	assert(pstHead->pNext->pNext->pData == piData4);
+	t_linked_list_node *tmp1 = linked_list_pop_first(&tp_ll_head);
+	assert(tmp1->vp_data == ip_data_1);
+	assert(tp_ll_head->vp_data == ip_data_2);
+	assert(tp_ll_head->stp_ll_next->vp_data == ip_data_3);
+	assert(tp_ll_head->stp_ll_next->stp_ll_next->vp_data == ip_data_4);
 
 	// cleanup
-  free(piData1);
-  free(piData2);
-  free(piData3);
-  free(piData4);
+  free(ip_data_1);
+  free(ip_data_2);
+  free(ip_data_3);
+  free(ip_data_4);
   free(tmp1);
-  free(pstHead->pNext->pNext);
-  free(pstHead->pNext);
-  free(pstHead);
+  free(tp_ll_head->stp_ll_next->stp_ll_next);
+  free(tp_ll_head->stp_ll_next);
+  free(tp_ll_head);
 
-  printf("test_fnLinkedListPopFirst passed\n");
+  printf("test_linked_list_pop_first passed\n");
 }
 
 int main() {
-  printf("Running test_fnLinkedListPopFirst...\n");
-  test_fnLinkedListPopFirst();
-  printf("test_fnLinkedListPopFirst passed successfully!\n");
+  printf("Running test_linked_list_pop_first...\n");
+  test_linked_list_pop_first();
+  printf("test_linked_list_pop_first passed successfully!\n");
   return 0;
 }

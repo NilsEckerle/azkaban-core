@@ -3,27 +3,27 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void test_fnLinkedListGetLength() {
-  stLinkedListNode *pstHead = NULL;
-  assert(fnLinkedListGetLength(pstHead) == 0);
+void test_linked_list_get_length() {
+  t_linked_list_node *tp_ll_head = NULL;
+  assert(linked_list_get_length(tp_ll_head) == 0);
 
-  int iData1 = 1;
-  pstHead = fnLinkedListInit(&iData1);
-  assert(fnLinkedListGetLength(pstHead) == 1);
+  int i_data1 = 1;
+  tp_ll_head = linked_list_init(&i_data1);
+  assert(linked_list_get_length(tp_ll_head) == 1);
 
-  int iData2 = 2;
-  fnLinkedListPrependNode(&pstHead, &iData2);
-  assert(fnLinkedListGetLength(pstHead) == 2);
+  int i_data2 = 2;
+  linked_list_prepend_node(&tp_ll_head, &i_data2);
+  assert(linked_list_get_length(tp_ll_head) == 2);
 
-  free(pstHead->pNext);
-  free(pstHead);
+  free(tp_ll_head->stp_ll_next);
+  free(tp_ll_head);
 
-  printf("test_fnLinkedListGetLength passed\n");
+  printf("test_linked_list_get_length passed\n");
 }
 
 int main() {
-  printf("Running test_fnLinkedListGetLength...\n");
-  test_fnLinkedListGetLength();
-  printf("test_fnLinkedListGetLength passed successfully!\n");
+  printf("Running test_linked_list_get_length...\n");
+  test_linked_list_get_length();
+  printf("test_linked_list_get_length passed successfully!\n");
   return 0;
 }
