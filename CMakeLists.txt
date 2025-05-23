@@ -77,10 +77,10 @@ endif()
 
 # Create the library (build own library)
 add_library(azkaban-core
-		src/database.c
-		src/entryDetail_repository.c
-		src/entry_repository.c
 		src/linked_list.c
+		src/database.c
+		src/entry_repository.c
+		src/entry_detail_repository.c
 	)
 
 # Set include directories for the library

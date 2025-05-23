@@ -31,6 +31,6 @@ typedef struct {
   int i_entry_id;       /**< Foreign key referencing the associated entry. */
   t_entry_detail_content *t_content;  /**< Pointer to the content of the entry detail. */
   int b_is_deleted;      /**< Deletion status flag (0: active, 1: deleted). */
-} st_entry_detail;
+} t_entry_detail;
 
 #endif // !ENTRYDETAIL_H
